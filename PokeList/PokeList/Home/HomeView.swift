@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeViewProtocol: UIView {
-    func updateView()
+    func updateView(withPokemons pokemons: [PokemonModel])
 }
 
 protocol HomeViewDelegate: AnyObject {
@@ -42,7 +42,8 @@ final class HomeView: UIView {
 
 // MARK: HomeViewProtocol
 extension HomeView: HomeViewProtocol {
-    func updateView() {
+    
+    func updateView(withPokemons pokemons: [PokemonModel]) {
         
     }
 }

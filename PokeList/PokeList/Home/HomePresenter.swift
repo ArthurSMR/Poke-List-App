@@ -13,7 +13,7 @@ protocol HomePresenterProtocol {
 }
 
 protocol HomePresenterDelegate: AnyObject {
-    func didLoadPokemonList()
+    func didLoadPokemonList(pokemons: [PokemonModel])
 }
 
 final class HomePresenter {
@@ -40,6 +40,6 @@ extension HomePresenter: HomePresenterProtocol {
 extension HomePresenter: HomeInteractorDelegate {
     
     func didFetchPokemons(pokemons: [PokemonModel]) {
-        print("pokemons \(pokemons)")
+        delegate?.didLoadPokemonList(pokemons: pokemons)
     }
 }

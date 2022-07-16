@@ -38,11 +38,26 @@ extension HomeInteractor: HomeInteractorProtocol {
                 
             case let .success(pokedex):
                 
-                for id in 0..<pokedex.results.count {
+                let dispatchGroup = DispatchGroup()
+                
+                for pokemon in pokedex.results {
                     
-                    self?.provider.fetchPokemon(atURL: pokedex.results[id].url) { result in
-                        print(result)
+                    dispatchGroup.enter()
+                    self?.provider.fetchPokemon(atURL: pokemon.url) { result in
+                        
+                        switch result {
+                        case let .success(pokemonModel):
+                            self?.pokemonList.append(pokemonModel)
+                            dispatchGroup.leave()
+                            
+                        case let .failure(networkError):
+                            print("Error: \(networkError.localizedDescription)")
+                        }
                     }
+                }
+                
+                dispatchGroup.notify(queue: .main) {
+                    self?.delegate?.didFetchPokemons(pokemons: self?.pokemonList ?? [])
                 }
                 
             case let .failure(networkError):
