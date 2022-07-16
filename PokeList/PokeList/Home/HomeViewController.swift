@@ -9,13 +9,11 @@ import UIKit
 
 protocol HomeViewControllerProtocol {
     func set(presenter: HomePresenterProtocol)
+    func loadPokemonList()
+    func updateView()
 }
 
-protocol HomeViewControllerDelegate {
-    
-}
-
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     // MARK: Properties
     
@@ -33,6 +31,11 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadPokemonList()
+    }
+    
     override func loadView() {
         view = homeView
     }
@@ -44,6 +47,16 @@ extension HomeViewController: HomeViewControllerProtocol {
     func set(presenter: HomePresenterProtocol) {
         self.presenter = presenter
     }
+    
+    func loadPokemonList() {
+        presenter?.presentPokemonList()
+    }
+    
+    func updateView() {
+        DispatchQueue.main.async {
+            self.homeView.updateView()
+        }
+    }
 }
 
 // MARK: HomeViewDelegate
@@ -51,7 +64,10 @@ extension HomeViewController: HomeViewDelegate {
     
 }
 
-// MARK: HomePresenterDelegate
+// MARK: HomePresenterDelegate 
 extension HomeViewController: HomePresenterDelegate {
     
+    func didLoadPokemonList() {
+        updateView()
+    }
 }

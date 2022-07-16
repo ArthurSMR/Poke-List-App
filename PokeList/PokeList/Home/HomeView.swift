@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeViewProtocol: UIView {
-    
+    func updateView()
 }
 
 protocol HomeViewDelegate: AnyObject {
@@ -42,7 +42,9 @@ final class HomeView: UIView {
 
 // MARK: HomeViewProtocol
 extension HomeView: HomeViewProtocol {
-    
+    func updateView() {
+        
+    }
 }
 
 // MARK: ViewCodable

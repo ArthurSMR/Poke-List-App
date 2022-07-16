@@ -21,11 +21,16 @@ extension AppFactory: AppFactoryProtocol {
     func makeHome() -> UIViewController {
         
         let homeRouter = HomeRouter()
-        let homeInteractor = HomeInteractor()
+        
+        let networkPokemonProvider = NetworkPokemonProvider()
+        
+        let homeInteractor = HomeInteractor(provider: networkPokemonProvider)
         
         let homePresenter = HomePresenter()
         homePresenter.set(router: homeRouter,
                           interactor: homeInteractor)
+        
+        homeInteractor.delegate = homePresenter
         
         let homeViewController = HomeViewController()
         homeViewController.set(presenter: homePresenter)
