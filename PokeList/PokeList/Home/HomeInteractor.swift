@@ -15,6 +15,7 @@ final class HomeInteractor {
     
 }
 
+// MARK: HomeInteractorProtocol
 extension HomeInteractor: HomeInteractorProtocol {
     
 }

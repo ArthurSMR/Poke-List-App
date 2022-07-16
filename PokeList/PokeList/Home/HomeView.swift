@@ -17,6 +17,8 @@ protocol HomeViewDelegate: AnyObject {
 
 final class HomeView: UIView {
     
+    // MARK: Properties
+    
     weak var delegate: HomeViewDelegate?
     
     private lazy var label: UILabel = {
@@ -38,10 +40,12 @@ final class HomeView: UIView {
     }
 }
 
+// MARK: HomeViewProtocol
 extension HomeView: HomeViewProtocol {
     
 }
 
+// MARK: ViewCodable
 extension HomeView: ViewCodable {
     
     func setupHierarchy() {

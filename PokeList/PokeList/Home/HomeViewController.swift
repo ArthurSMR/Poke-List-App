@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeViewControllerProtocol {
-    
+    func set(presenter: HomePresenterProtocol)
 }
 
 protocol HomeViewControllerDelegate {
@@ -17,6 +17,8 @@ protocol HomeViewControllerDelegate {
 
 class HomeViewController: UIViewController {
     
+    // MARK: Properties
+    
     lazy var homeView: HomeViewProtocol = {
         let view = HomeView()
         view.delegate = self
@@ -24,6 +26,8 @@ class HomeViewController: UIViewController {
     }()
     
     private var presenter: HomePresenterProtocol?
+    
+    // MARK: Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,20 +36,22 @@ class HomeViewController: UIViewController {
     override func loadView() {
         view = homeView
     }
+}
+
+// MARK: HomeViewControllerProtocol
+extension HomeViewController: HomeViewControllerProtocol {
     
     func set(presenter: HomePresenterProtocol) {
         self.presenter = presenter
     }
 }
 
-extension HomeViewController: HomeViewControllerProtocol {
-    
-}
-
+// MARK: HomeViewDelegate
 extension HomeViewController: HomeViewDelegate {
     
 }
 
+// MARK: HomePresenterDelegate
 extension HomeViewController: HomePresenterDelegate {
     
 }

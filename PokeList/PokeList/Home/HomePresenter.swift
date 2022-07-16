@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HomePresenterProtocol {
-    
+    func set(router: HomeRouterProtocol, interactor: HomeInteractorProtocol)
 }
 
 protocol HomePresenterDelegate: AnyObject {
@@ -21,13 +21,13 @@ final class HomePresenter {
     private var homeInteractor: HomeInteractorProtocol?
     
     weak var delegate: HomePresenterDelegate?
+}
+
+// MARK: HomePresenterProtocol
+extension HomePresenter: HomePresenterProtocol {
     
     func set(router: HomeRouterProtocol, interactor: HomeInteractorProtocol) {
         self.homeRouter = router
         self.homeInteractor = interactor
     }
-}
-
-extension HomePresenter: HomePresenterProtocol {
-    
 }
