@@ -48,7 +48,7 @@ final class HomeView: UIView {
 extension HomeView: HomeViewProtocol {
     
     func updateView(with page: PokedexPage) {
-        self.pokedexPage = page
+        pokedexPage = page
         tableView.reloadData()
     }
 }

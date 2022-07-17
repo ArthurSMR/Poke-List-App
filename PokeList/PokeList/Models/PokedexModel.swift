@@ -23,4 +23,10 @@ final class PokedexPage {
     var pokedex: PokedexModel = PokedexModel()
     var pokemons: [PokemonModel] = []
     var hasNextPage: Bool { !pokedex.next.isEmpty }
+    
+    func capitalizeFirstPokemonLetter() {
+        for index in 0..<pokemons.count {
+            pokemons[index].name.capitalizeFirstLetter()
+        }
+    }
 }

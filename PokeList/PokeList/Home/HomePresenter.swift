@@ -25,6 +25,16 @@ final class HomePresenter {
     weak var delegate: HomePresenterDelegate?
 }
 
+extension String {
+    func capitalizingFirstLetter() -> String {
+      return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+      self = self.capitalizingFirstLetter()
+    }
+}
+
 // MARK: HomePresenterProtocol
 extension HomePresenter: HomePresenterProtocol {
     
@@ -45,6 +55,9 @@ extension HomePresenter: HomePresenterProtocol {
 extension HomePresenter: HomeInteractorDelegate {
     
     func didFetchPokedexPage(_ page: PokedexPage) {
+        
+        page.capitalizeFirstPokemonLetter()
+        
         delegate?.didLoadPokedexPage(page)
     }
 }
