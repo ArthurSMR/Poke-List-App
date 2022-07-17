@@ -11,17 +11,7 @@ final class PokemonListCell: UITableViewCell {
     
     static let identifier: String = String(describing: PokemonListCell.self)
     
-    private let pokemonImageView: UIImageView = {
-       let img = UIImageView()
-        img.contentMode = .scaleToFill
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.layer.cornerRadius = 20
-        img.layer.borderWidth = 1
-        img.layer.borderColor = UIColor.pokemonBlue.cgColor
-        img.clipsToBounds = true
-        img.image = UIImage(named: "placeholder")
-        return img
-    }()
+    private let pokemonIcon: PokemonIcon = PokemonIcon()
     
     private let label: UILabel = {
         let label = UILabel()
@@ -54,29 +44,20 @@ final class PokemonListCell: UITableViewCell {
         super.prepareForReuse()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        pokemonImageView.layer.masksToBounds = true
-        pokemonImageView.layer.cornerRadius = pokemonImageView.frame.size.height / 2
-    }
-    
     func setup(pokemonName: String, imageURL: URL? = nil) {
         label.text = pokemonName
         
-        if let imageURL = imageURL {
-            pokemonImageView.setImage(with: imageURL)
-        }
+        pokemonIcon.setupImage(with: imageURL)
     }
     
     private func setupView() {
         
-        stackView.addArrangedSubview(pokemonImageView)
+        stackView.addArrangedSubview(pokemonIcon)
         stackView.addArrangedSubview(label)
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            pokemonImageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.9),
-            pokemonImageView.heightAnchor.constraint(equalTo: pokemonImageView.widthAnchor),
+            pokemonIcon.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.9),
             
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),

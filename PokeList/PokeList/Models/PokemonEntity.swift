@@ -8,12 +8,12 @@
 import UIKit
 
 struct PokemonEntity: Codable {
-    var name: String
-    var base_experience: Int
+    var name: String = ""
+    var base_experience: Int = 0
     var id: Int = 0
     var height = 0
-    var sprites: PokemonSprites
-    var stats: [PokemonStats]
+    var sprites: PokemonSprites = PokemonSprites()
+    var stats: [PokemonStats] = []
 }
 
 struct PokemonSprites: Codable {

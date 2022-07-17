@@ -130,7 +130,7 @@ extension HomeView: ViewCodable {
     func setupConstraints() {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+//        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
