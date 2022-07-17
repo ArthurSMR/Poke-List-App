@@ -32,6 +32,15 @@ final class HomeView: UIView {
         return tableView
     }()
     
+    private lazy var upButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "pokemon_up_arrow"), for: .normal)
+        button.isHidden = true
+        button.addTarget(self, action: #selector(upButtonDidTapped), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Initialization
     
     override init(frame: CGRect) {
@@ -41,6 +50,15 @@ final class HomeView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func scrollToTop() {
+        let topRow = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: topRow, at: .top, animated: true)
+    }
+    
+    @objc private func upButtonDidTapped() {
+        scrollToTop()
     }
 }
 
@@ -62,6 +80,7 @@ extension HomeView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if indexPath.row == pokedexPage.pokemons.count - 1 {
+            upButton.isHidden = false
             delegate?.willDisplayLastCell()
         }
     }
@@ -100,6 +119,7 @@ extension HomeView: ViewCodable {
     
     func setupHierarchy() {
         addSubview(tableView)
+        addSubview(upButton)
     }
     
     func setupConstraints() {
@@ -110,7 +130,12 @@ extension HomeView: ViewCodable {
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            
+            upButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            upButton.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: -32),
+            upButton.heightAnchor.constraint(equalToConstant: 40),
+            upButton.heightAnchor.constraint(equalTo: upButton.widthAnchor)
         ])
     }
     
