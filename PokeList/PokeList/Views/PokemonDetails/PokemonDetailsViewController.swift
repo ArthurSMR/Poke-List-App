@@ -9,12 +9,13 @@ import UIKit
 
 final class PokemonDetailsViewController: UIViewController {
     
-    var pokemon: PokemonModel?
+    var pokemon: PokemonEntity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.largeTitleDisplayMode = .never
         title = pokemon?.name
+        print(pokemon)
     }
 }

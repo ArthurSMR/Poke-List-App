@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeRouterProtocol {
-    func routeToPokemonDetails(_ pokemon: PokemonModel)
+    func routeToPokemonDetails(_ pokemon: PokemonEntity)
 }
 
 final class HomeRouter {
@@ -24,7 +24,7 @@ final class HomeRouter {
 // MARK: HomeRouterProtocol
 extension HomeRouter: HomeRouterProtocol {
     
-    func routeToPokemonDetails(_ pokemon: PokemonModel) {
+    func routeToPokemonDetails(_ pokemon: PokemonEntity) {
         
         DispatchQueue.main.async {
             let viewController = self.factory.makePokemonDetails(pokemon)

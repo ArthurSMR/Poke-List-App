@@ -7,11 +7,13 @@
 
 import UIKit
 
-struct PokemonModel: Codable {
+struct PokemonEntity: Codable {
     var name: String
+    var base_experience: Int
     var id: Int = 0
     var height = 0
     var sprites: PokemonSprites
+    var stats: [PokemonStats]
 }
 
 struct PokemonSprites: Codable {
@@ -20,4 +22,13 @@ struct PokemonSprites: Codable {
     var frontDefaultAsURL: URL? {
         URL(string: front_default ?? "")
     }
+}
+
+struct PokemonStats: Codable {
+    var base_stat: Int
+    var stat: PokemonStat
+}
+
+struct PokemonStat: Codable {
+    var name: String
 }

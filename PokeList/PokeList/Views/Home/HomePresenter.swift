@@ -11,7 +11,7 @@ protocol HomePresenterProtocol {
     func set(router: HomeRouterProtocol, interactor: HomeInteractorProtocol)
     func presentPokedexPage()
     func presentNextPokedexPage()
-    func showPokemonDetails(_ pokemon: PokemonModel)
+    func showPokemonDetails(_ pokemon: PokemonEntity)
 }
 
 protocol HomePresenterDelegate: AnyObject {
@@ -39,7 +39,7 @@ extension String {
 // MARK: HomePresenterProtocol
 extension HomePresenter: HomePresenterProtocol {
     
-    func showPokemonDetails(_ pokemon: PokemonModel) {
+    func showPokemonDetails(_ pokemon: PokemonEntity) {
         homeRouter?.routeToPokemonDetails(pokemon)
     }
     

@@ -73,7 +73,7 @@ extension HomeViewController: HomeViewDelegate {
         loadNextPage()
     }
     
-    func didTapPokemon(_ pokemon: PokemonModel) {
+    func didTapPokemon(_ pokemon: PokemonEntity) {
         presenter?.showPokemonDetails(pokemon)
     }
 }

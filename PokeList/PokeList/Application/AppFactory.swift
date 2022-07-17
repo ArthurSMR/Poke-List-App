@@ -10,7 +10,7 @@ import UIKit
 
 protocol AppFactoryProtocol {
     func makeHome() -> UIViewController
-    func makePokemonDetails(_ pokemon: PokemonModel) -> UIViewController
+    func makePokemonDetails(_ pokemon: PokemonEntity) -> UIViewController
 }
 
 final class AppFactory {
@@ -42,7 +42,7 @@ extension AppFactory: AppFactoryProtocol {
         return homeViewController
     }
     
-    func makePokemonDetails(_ pokemon: PokemonModel) -> UIViewController {
+    func makePokemonDetails(_ pokemon: PokemonEntity) -> UIViewController {
         
         let pokemonDetailVC = PokemonDetailsViewController()
         pokemonDetailVC.pokemon = pokemon

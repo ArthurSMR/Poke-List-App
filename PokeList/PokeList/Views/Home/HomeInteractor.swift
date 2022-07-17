@@ -43,7 +43,7 @@ final class HomeInteractor {
         }
     }
     
-    private func fetchPokemons(from pokedex: PokedexModel) {
+    private func fetchPokemons(from pokedex: PokedexEntity) {
         
         let dispatchGroup = DispatchGroup()
         

@@ -13,7 +13,7 @@ protocol HomeViewProtocol: UIView {
 
 protocol HomeViewDelegate: AnyObject {
     func willDisplayLastCell()
-    func didTapPokemon(_ pokemon: PokemonModel)
+    func didTapPokemon(_ pokemon: PokemonEntity)
 }
 
 final class HomeView: UIView {

@@ -13,7 +13,7 @@ final class NetworkPokemonProvider {
 
 extension NetworkPokemonProvider: NetworkPokemonQuery {
     
-    func fetchPokedex(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokedexModel>) -> Void) {
+    func fetchPokedex(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokedexEntity>) -> Void) {
         
         guard let url = url else {
             onCompletion(.failure(.invalidURL))
@@ -29,7 +29,7 @@ extension NetworkPokemonProvider: NetworkPokemonQuery {
             
             if let data = data {
                 do {
-                    let pokedex = try JSONDecoder().decode(PokedexModel.self, from: data)
+                    let pokedex = try JSONDecoder().decode(PokedexEntity.self, from: data)
                     onCompletion(.success(pokedex))
                 } catch {
                     onCompletion(.failure(.unableToMapModel))
@@ -38,7 +38,7 @@ extension NetworkPokemonProvider: NetworkPokemonQuery {
         }.resume()
     }
     
-    func fetchPokemon(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokemonModel>) -> Void) {
+    func fetchPokemon(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokemonEntity>) -> Void) {
         
         guard let url = url else {
             onCompletion(.failure(.invalidURL))
@@ -54,7 +54,7 @@ extension NetworkPokemonProvider: NetworkPokemonQuery {
             
             if let data = data {
                 do {
-                    let pokemon = try JSONDecoder().decode(PokemonModel.self, from: data)
+                    let pokemon = try JSONDecoder().decode(PokemonEntity.self, from: data)
                     onCompletion(.success(pokemon))
                 } catch {
                     onCompletion(.failure(.unableToMapModel))

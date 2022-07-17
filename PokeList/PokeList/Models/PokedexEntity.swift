@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokedexModel: Codable {
+struct PokedexEntity: Codable {
     var count: Int = 0
     var next: String = ""
     var previous: String? = ""
@@ -20,8 +20,8 @@ struct Pokemon: Codable {
 }
 
 final class PokedexPage {
-    var pokedex: PokedexModel = PokedexModel()
-    var pokemons: [PokemonModel] = []
+    var pokedex: PokedexEntity = PokedexEntity()
+    var pokemons: [PokemonEntity] = []
     var hasNextPage: Bool { !pokedex.next.isEmpty }
     
     func capitalizeFirstPokemonLetter() {
