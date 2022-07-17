@@ -18,3 +18,9 @@ struct Pokemon: Codable {
     let name: String
     let url: URL?
 }
+
+final class PokedexPage {
+    var pokedex: PokedexModel = PokedexModel()
+    var pokemons: [PokemonModel] = []
+    var hasNextPage: Bool { !pokedex.next.isEmpty }
+}

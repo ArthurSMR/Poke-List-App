@@ -24,6 +24,6 @@ public enum NetworkError: Error {
 protocol NetworkQuery {}
 
 protocol NetworkPokemonQuery: NetworkQuery {
-    func fetchAllPokemons(onCompletion: @escaping (NetworkResult<PokedexModel>) -> Void)
+    func fetchPokedex(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokedexModel>) -> Void) 
     func fetchPokemon(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokemonModel>) -> Void)
 }

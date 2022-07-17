@@ -9,8 +9,9 @@ import UIKit
 
 protocol HomeViewControllerProtocol {
     func set(presenter: HomePresenterProtocol)
-    func loadPokemonList()
-    func updateView(withPokemons pokemons: [PokemonModel])
+    func loadPokedexPage()
+    func loadNextPage()
+    func updateView(with page: PokedexPage)
 }
 
 final class HomeViewController: UIViewController {
@@ -35,7 +36,7 @@ final class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadPokemonList()
+        loadPokedexPage()
     }
     
     override func loadView() {
@@ -50,13 +51,17 @@ extension HomeViewController: HomeViewControllerProtocol {
         self.presenter = presenter
     }
     
-    func loadPokemonList() {
-        presenter?.presentPokemonList()
+    func loadPokedexPage() {
+        presenter?.presentPokedexPage()
     }
     
-    func updateView(withPokemons pokemons: [PokemonModel]) {
+    func loadNextPage() {
+        presenter?.presentNextPokedexPage()
+    }
+    
+    func updateView(with page: PokedexPage) {
         DispatchQueue.main.async {
-            self.homeView.updateView(withPokemons: pokemons)
+            self.homeView.updateView(with: page)
         }
     }
 }
@@ -64,12 +69,15 @@ extension HomeViewController: HomeViewControllerProtocol {
 // MARK: HomeViewDelegate
 extension HomeViewController: HomeViewDelegate {
     
+    func willDisplayLastCell() {
+        loadNextPage()
+    }
 }
 
 // MARK: HomePresenterDelegate 
 extension HomeViewController: HomePresenterDelegate {
     
-    func didLoadPokemonList(pokemons: [PokemonModel]) {
-        updateView(withPokemons: pokemons)
+    func didLoadPokedexPage(_ page: PokedexPage) {
+        updateView(with: page)
     }
 }

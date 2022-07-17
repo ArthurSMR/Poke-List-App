@@ -9,11 +9,12 @@ import Foundation
 
 protocol HomePresenterProtocol {
     func set(router: HomeRouterProtocol, interactor: HomeInteractorProtocol)
-    func presentPokemonList()
+    func presentPokedexPage()
+    func presentNextPokedexPage()
 }
 
 protocol HomePresenterDelegate: AnyObject {
-    func didLoadPokemonList(pokemons: [PokemonModel])
+    func didLoadPokedexPage(_ page: PokedexPage)
 }
 
 final class HomePresenter {
@@ -27,8 +28,12 @@ final class HomePresenter {
 // MARK: HomePresenterProtocol
 extension HomePresenter: HomePresenterProtocol {
     
-    func presentPokemonList() {
+    func presentPokedexPage() {
         homeInteractor?.getPokemons()
+    }
+    
+    func presentNextPokedexPage() {
+        homeInteractor?.getNextPokemons()
     }
     
     func set(router: HomeRouterProtocol, interactor: HomeInteractorProtocol) {
@@ -39,7 +44,7 @@ extension HomePresenter: HomePresenterProtocol {
 
 extension HomePresenter: HomeInteractorDelegate {
     
-    func didFetchPokemons(pokemons: [PokemonModel]) {
-        delegate?.didLoadPokemonList(pokemons: pokemons)
+    func didFetchPokedexPage(_ page: PokedexPage) {
+        delegate?.didLoadPokedexPage(page)
     }
 }

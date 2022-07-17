@@ -9,16 +9,16 @@ import Foundation
 
 final class NetworkPokemonProvider {
     
-    let pokeAPIURL: String = "http://pokeapi.co/api/v2/pokemon/"
+    
     
 }
 
 extension NetworkPokemonProvider: NetworkPokemonQuery {
     
-    func fetchAllPokemons(onCompletion: @escaping (NetworkResult<PokedexModel>) -> Void) {
+    func fetchPokedex(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokedexModel>) -> Void) {
         
-        guard let url = URL(string: pokeAPIURL) else { return }
-        
+        guard let url = url else { return }
+
         URLSession.shared.dataTask(with: url) { data, urlResponse, error in
             
             if let error = error {

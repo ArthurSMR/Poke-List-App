@@ -8,11 +8,11 @@
 import UIKit
 
 protocol HomeViewProtocol: UIView {
-    func updateView(withPokemons pokemons: [PokemonModel])
+    func updateView(with page: PokedexPage)
 }
 
 protocol HomeViewDelegate: AnyObject {
-    
+    func willDisplayLastCell()
 }
 
 final class HomeView: UIView {
@@ -21,18 +21,14 @@ final class HomeView: UIView {
     
     weak var delegate: HomeViewDelegate?
     
-    private var pokemons: [PokemonModel] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var pokedexPage: PokedexPage = PokedexPage()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(PokemonListCell.self,
-                           forCellReuseIdentifier: PokemonListCell.identifier)
+        tableView.register(PokemonListCell.self, forCellReuseIdentifier: PokemonListCell.identifier)
+        tableView.register(LoadViewCell.self, forCellReuseIdentifier: LoadViewCell.identifier)
         return tableView
     }()
     
@@ -51,21 +47,44 @@ final class HomeView: UIView {
 // MARK: HomeViewProtocol
 extension HomeView: HomeViewProtocol {
     
-    func updateView(withPokemons pokemons: [PokemonModel]) {
-        self.pokemons = pokemons
+    func updateView(with page: PokedexPage) {
+        self.pokedexPage = page
+        tableView.reloadData()
     }
 }
 
-extension HomeView: UITableViewDelegate, UITableViewDataSource {
+extension HomeView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == pokedexPage.pokemons.count - 1 {
+            delegate?.willDisplayLastCell()
+        }
+    }
+}
+
+extension HomeView: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokemons.count
+        return pokedexPage.pokemons.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        if indexPath.row == pokedexPage.pokemons.count - 1 {
+            
+            if let cell = tableView.dequeueReusableCell(withIdentifier: LoadViewCell.identifier, for: indexPath) as? LoadViewCell {
+                return cell
+            }
+        }
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: PokemonListCell.identifier, for: indexPath) as? PokemonListCell {
 
-            let pokemon = pokemons[indexPath.row]
+            let pokemon = pokedexPage.pokemons[indexPath.row]
 
             cell.setup(pokemonName: pokemon.name, imageURL: pokemon.sprites.frontDefaultAsURL)
 
@@ -73,10 +92,6 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
         }
         
         return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
     }
 }
 
