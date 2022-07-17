@@ -13,6 +13,7 @@ protocol HomeViewProtocol: UIView {
 
 protocol HomeViewDelegate: AnyObject {
     func willDisplayLastCell()
+    func didTapPokemon(_ pokemon: PokemonModel)
 }
 
 final class HomeView: UIView {
@@ -84,25 +85,29 @@ extension HomeView: UITableViewDelegate {
             delegate?.willDisplayLastCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let pokemon = pokedexPage.pokemons[indexPath.row]
+        delegate?.didTapPokemon(pokemon)
+    }
 }
 
 extension HomeView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokedexPage.pokemons.count
+        return pokedexPage.pokemons.count == 0 ? 1 : pokedexPage.pokemons.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == pokedexPage.pokemons.count - 1 {
+        if indexPath.row == pokedexPage.pokemons.count - 1 || pokedexPage.pokemons.count == 0 {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: LoadViewCell.identifier, for: indexPath) as? LoadViewCell {
+                cell.startAnimation()
                 return cell
             }
-        }
+        } else if let cell = tableView.dequeueReusableCell(withIdentifier: PokemonListCell.identifier, for: indexPath) as? PokemonListCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: PokemonListCell.identifier, for: indexPath) as? PokemonListCell {
-
             let pokemon = pokedexPage.pokemons[indexPath.row]
 
             cell.setup(pokemonName: pokemon.name, imageURL: pokemon.sprites.frontDefaultAsURL)
@@ -127,7 +132,7 @@ extension HomeView: ViewCodable {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),

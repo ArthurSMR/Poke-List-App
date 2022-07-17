@@ -9,15 +9,16 @@ import Foundation
 
 final class NetworkPokemonProvider {
     
-    
-    
 }
 
 extension NetworkPokemonProvider: NetworkPokemonQuery {
     
     func fetchPokedex(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokedexModel>) -> Void) {
         
-        guard let url = url else { return }
+        guard let url = url else {
+            onCompletion(.failure(.invalidURL))
+            return
+        }
 
         URLSession.shared.dataTask(with: url) { data, urlResponse, error in
             
@@ -39,8 +40,10 @@ extension NetworkPokemonProvider: NetworkPokemonQuery {
     
     func fetchPokemon(atURL url: URL?, onCompletion: @escaping (NetworkResult<PokemonModel>) -> Void) {
         
-        
-        guard let url = url else { return }
+        guard let url = url else {
+            onCompletion(.failure(.invalidURL))
+            return
+        }
 
         URLSession.shared.dataTask(with: url) { data, response, error in
             

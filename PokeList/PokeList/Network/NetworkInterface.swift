@@ -11,13 +11,7 @@ public typealias NetworkResult<T> = Result<T, NetworkError>
 
 public enum NetworkError: Error {
     case invalidURL
-    case statusCodeNotAcceptable
-    case errorWithStatusCode(statusCode: Int?, error: Error)
-    case notSafeData
-    case notJSONSerializable
     case unableToMapModel
-    case unableToDetermineDataAsJSON
-    case unableToGetUserToken
     case internalError(Error)
 }
 

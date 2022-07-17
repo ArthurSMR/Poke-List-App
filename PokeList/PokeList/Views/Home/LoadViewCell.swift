@@ -35,7 +35,9 @@ final class LoadViewCell: UITableViewCell {
             loadActivity.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             loadActivity.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
         ])
-        
+    }
+    
+    func startAnimation() {
         loadActivity.startAnimating()
     }
 }

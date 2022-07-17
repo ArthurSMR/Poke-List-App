@@ -21,6 +21,7 @@
 		3696E5BE2883BDBE00B35E25 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696E5BD2883BDBE00B35E25 /* UIImageView+Download.swift */; };
 		3696E5C02883BEE600B35E25 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696E5BF2883BEE600B35E25 /* Colors.swift */; };
 		3696E5C32884688E00B35E25 /* LoadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696E5C22884688E00B35E25 /* LoadViewCell.swift */; };
+		3696E5C628847C5C00B35E25 /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696E5C528847C5C00B35E25 /* PokemonDetailsViewController.swift */; };
 		36B6202A288258C100C4F13F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B62029288258C100C4F13F /* AppDelegate.swift */; };
 		36B6202E288258C100C4F13F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6202D288258C100C4F13F /* HomeViewController.swift */; };
 		36B62033288258C200C4F13F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36B62032288258C200C4F13F /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		3696E5BD2883BDBE00B35E25 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 		3696E5BF2883BEE600B35E25 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3696E5C22884688E00B35E25 /* LoadViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewCell.swift; sourceTree = "<group>"; };
+		3696E5C528847C5C00B35E25 /* PokemonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsViewController.swift; sourceTree = "<group>"; };
 		36B62026288258C100C4F13F /* PokeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B62029288258C100C4F13F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36B6202D288258C100C4F13F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		3696E5C428847C3500B35E25 /* PokemonDetails */ = {
+			isa = PBXGroup;
+			children = (
+				3696E5C528847C5C00B35E25 /* PokemonDetailsViewController.swift */,
+			);
+			path = PokemonDetails;
+			sourceTree = "<group>";
+		};
+		3696E5C728847C7B00B35E25 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3696E5A328825CED00B35E25 /* Home */,
+				3696E5C428847C3500B35E25 /* PokemonDetails */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		36B6201D288258C100C4F13F = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +153,7 @@
 				3696E5B528831D4700B35E25 /* Models */,
 				3696E5B2288317C100B35E25 /* Network */,
 				3696E5AE288266A500B35E25 /* Application */,
-				3696E5A328825CED00B35E25 /* Home */,
+				3696E5C728847C7B00B35E25 /* Views */,
 				3696E5A028825CD000B35E25 /* Extensions */,
 				36B62032288258C200C4F13F /* Assets.xcassets */,
 				36B62034288258C200C4F13F /* LaunchScreen.storyboard */,
@@ -219,6 +238,7 @@
 				3696E5B728831DA300B35E25 /* PokedexModel.swift in Sources */,
 				3696E5B12883167100B35E25 /* NetworkPokemonProvider.swift in Sources */,
 				3696E5BB28839AF800B35E25 /* PokemonListCell.swift in Sources */,
+				3696E5C628847C5C00B35E25 /* PokemonDetailsViewController.swift in Sources */,
 				36B6202E288258C100C4F13F /* HomeViewController.swift in Sources */,
 				3696E5A528825D0500B35E25 /* HomeView.swift in Sources */,
 				3696E5C32884688E00B35E25 /* LoadViewCell.swift in Sources */,
@@ -374,6 +394,7 @@
 				INFOPLIST_FILE = PokeList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -385,7 +406,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -401,6 +422,7 @@
 				INFOPLIST_FILE = PokeList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -412,7 +434,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

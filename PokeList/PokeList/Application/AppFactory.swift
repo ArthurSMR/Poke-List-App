@@ -10,6 +10,7 @@ import UIKit
 
 protocol AppFactoryProtocol {
     func makeHome() -> UIViewController
+    func makePokemonDetails(_ pokemon: PokemonModel) -> UIViewController
 }
 
 final class AppFactory {
@@ -20,7 +21,7 @@ extension AppFactory: AppFactoryProtocol {
     
     func makeHome() -> UIViewController {
         
-        let homeRouter = HomeRouter()
+        let homeRouter = HomeRouter(factory: self)
         
         let networkPokemonProvider = NetworkPokemonProvider()
         
@@ -35,8 +36,16 @@ extension AppFactory: AppFactoryProtocol {
         let homeViewController = HomeViewController()
         homeViewController.set(presenter: homePresenter)
         
+        homeRouter.source = homeViewController
         homePresenter.delegate = homeViewController
         
         return homeViewController
+    }
+    
+    func makePokemonDetails(_ pokemon: PokemonModel) -> UIViewController {
+        
+        let pokemonDetailVC = PokemonDetailsViewController()
+        pokemonDetailVC.pokemon = pokemon
+        return pokemonDetailVC
     }
 }

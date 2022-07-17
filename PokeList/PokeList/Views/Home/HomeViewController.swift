@@ -30,13 +30,13 @@ final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Pokedex"
+        loadPokedexPage()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loadPokedexPage()
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        title = "Pokedex"
     }
     
     override func loadView() {
@@ -71,6 +71,10 @@ extension HomeViewController: HomeViewDelegate {
     
     func willDisplayLastCell() {
         loadNextPage()
+    }
+    
+    func didTapPokemon(_ pokemon: PokemonModel) {
+        presenter?.showPokemonDetails(pokemon)
     }
 }
 
