@@ -20,6 +20,7 @@ final class HomeView: UIView {
     // MARK: Properties
     
     weak var delegate: HomeViewDelegate?
+    
     private var pokemons: [PokemonModel] = [] {
         didSet {
             tableView.reloadData()
@@ -27,19 +28,12 @@ final class HomeView: UIView {
     }
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PokemonListCell.self,
                            forCellReuseIdentifier: PokemonListCell.identifier)
         return tableView
-    }()
-    
-    private lazy var label: UILabel = {
-       let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "PokeList"
-        return label
     }()
     
     // MARK: - Initialization
@@ -73,7 +67,7 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
 
             let pokemon = pokemons[indexPath.row]
 
-            cell.setup(pokemonName: pokemon.name)
+            cell.setup(pokemonName: pokemon.name, imageURL: pokemon.sprites.frontDefaultAsURL)
 
             return cell
         }
@@ -106,6 +100,7 @@ extension HomeView: ViewCodable {
     }
     
     func render() {
-        backgroundColor = .blue
+        backgroundColor = .pokemonYellow
+        tableView.backgroundColor = .pokemonYellow
     }
 }

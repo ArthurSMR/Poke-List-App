@@ -29,6 +29,8 @@ final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Pokedex"
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -16,6 +16,8 @@ final class PokemonListCell: UITableViewCell {
         img.contentMode = .scaleToFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 20
+        img.layer.borderWidth = 1
+        img.layer.borderColor = UIColor.pokemonBlue.cgColor
         img.clipsToBounds = true
         img.image = UIImage(named: "placeholder")
         return img
@@ -40,7 +42,7 @@ final class PokemonListCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .orange
+        contentView.backgroundColor = .white
         setupView()
     }
     
@@ -60,6 +62,10 @@ final class PokemonListCell: UITableViewCell {
     
     func setup(pokemonName: String, imageURL: URL? = nil) {
         label.text = pokemonName
+        
+        if let imageURL = imageURL {
+            pokemonImageView.setImage(with: imageURL)
+        }
     }
     
     private func setupView() {
@@ -69,15 +75,15 @@ final class PokemonListCell: UITableViewCell {
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            pokemonImageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.8),
+            pokemonImageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.9),
             pokemonImageView.heightAnchor.constraint(equalTo: pokemonImageView.widthAnchor),
             
-            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 16)
         ])
         
-        label.textColor = .white
+        label.textColor = .black
     }
 }

@@ -20,9 +20,13 @@ class AppDelegate: UIResponder {
 
     func setupWindow() {
         
-        let rootViewController = factory?.makeHome()
+        guard let rootViewController = factory?.makeHome() else { return }
+        
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = rootViewController
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }
