@@ -30,8 +30,9 @@ final class DetailViewCell: UITableViewCell {
     private let detailResultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.textAlignment = .right
+        label.textColor = .white
+        label.textAlignment = .center
+        label.backgroundColor = .pokemonBlue
         return label
     }()
     
@@ -43,6 +44,12 @@ final class DetailViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        detailResultLabel.layer.masksToBounds = true
+        detailResultLabel.layer.cornerRadius = detailResultLabel.frame.size.height / 2
     }
     
     func setup(detailName: String?, detailResult: String?) {
@@ -60,7 +67,10 @@ final class DetailViewCell: UITableViewCell {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32)
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
+            
+            detailResultLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.1),
+            detailResultLabel.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.8)
         ])
         
         selectionStyle = .none
