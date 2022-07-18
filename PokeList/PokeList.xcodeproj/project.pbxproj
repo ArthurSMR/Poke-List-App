@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36651EC32885BA5500549EB0 /* UpButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36651EC22885BA5500549EB0 /* UpButtonView.swift */; };
 		3696E5A228825CDD00B35E25 /* UIView+ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696E5A128825CDD00B35E25 /* UIView+ViewCodable.swift */; };
 		3696E5A528825D0500B35E25 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696E5A428825D0500B35E25 /* HomeView.swift */; };
 		3696E5A728825D0B00B35E25 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696E5A628825D0B00B35E25 /* HomeRouter.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36651EC22885BA5500549EB0 /* UpButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpButtonView.swift; sourceTree = "<group>"; };
 		3696E5A128825CDD00B35E25 /* UIView+ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ViewCodable.swift"; sourceTree = "<group>"; };
 		3696E5A428825D0500B35E25 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3696E5A628825D0B00B35E25 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				3696E5A628825D0B00B35E25 /* HomeRouter.swift */,
 				3696E5BA28839AF800B35E25 /* PokemonListCell.swift */,
 				3696E5C22884688E00B35E25 /* LoadViewCell.swift */,
+				36651EC22885BA5500549EB0 /* UpButtonView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				3696E5AD2882655300B35E25 /* AppFactory.swift in Sources */,
 				3696E5CF2884A94500B35E25 /* PokemonIcon.swift in Sources */,
 				3696E5A928825D1100B35E25 /* HomeInteractor.swift in Sources */,
+				36651EC32885BA5500549EB0 /* UpButtonView.swift in Sources */,
 				36B6202A288258C100C4F13F /* AppDelegate.swift in Sources */,
 				3696E5BE2883BDBE00B35E25 /* UIImageView+Download.swift in Sources */,
 				3696E5CD2884A02800B35E25 /* DetailViewCell.swift in Sources */,

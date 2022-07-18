@@ -33,12 +33,10 @@ final class HomeView: UIView {
         return tableView
     }()
     
-    private lazy var upButton: UIButton = {
-        let button = UIButton()
+    private var upButton: UpButtonView = {
+       let button = UpButtonView()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "pokemon_up_arrow"), for: .normal)
         button.isHidden = true
-        button.addTarget(self, action: #selector(upButtonDidTapped), for: .touchUpInside)
         return button
     }()
     
@@ -122,6 +120,11 @@ extension HomeView: UITableViewDataSource {
 // MARK: ViewCodable
 extension HomeView: ViewCodable {
     
+    func configure() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(upButtonDidTapped))
+        upButton.addGestureRecognizer(tapGesture)
+    }
+    
     func setupHierarchy() {
         addSubview(tableView)
         addSubview(upButton)
@@ -130,7 +133,7 @@ extension HomeView: ViewCodable {
     func setupConstraints() {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-//        
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -139,7 +142,7 @@ extension HomeView: ViewCodable {
             
             upButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
             upButton.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: -32),
-            upButton.heightAnchor.constraint(equalToConstant: 40),
+            upButton.heightAnchor.constraint(equalToConstant: 48),
             upButton.heightAnchor.constraint(equalTo: upButton.widthAnchor)
         ])
     }

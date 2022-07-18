@@ -51,7 +51,7 @@ extension PokemonDetailsView: UITableViewDelegate {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
         
         let label = UILabel()
-        label.frame = CGRect(x: 16,
+        label.frame = CGRect(x: 8,
                              y: 8,
                              width: headerView.frame.width,
                              height: headerView.frame.height)
