@@ -112,8 +112,8 @@ extension PokemonDetailsView: ViewCodable {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
