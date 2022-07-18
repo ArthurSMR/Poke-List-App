@@ -19,8 +19,7 @@ final class PokemonDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationItem.largeTitleDisplayMode = .always
-        title = pokemon?.name
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     override func viewDidAppear(_ animated: Bool) {

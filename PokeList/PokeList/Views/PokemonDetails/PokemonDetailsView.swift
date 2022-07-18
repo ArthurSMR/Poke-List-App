@@ -43,7 +43,7 @@ final class PokemonDetailsView: UIView {
 extension PokemonDetailsView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath.row == 0 ? 200 : 40
+        indexPath.row == 0 ? 300 : 40
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -83,7 +83,8 @@ extension PokemonDetailsView: UITableViewDataSource {
         if indexPath.row == 0 {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: IconViewCell.identifier, for: indexPath) as? IconViewCell {
-                cell.setupImage(with: pokemon?.sprites.frontDefaultAsURL)
+                cell.setup(pokemonName: pokemon?.name ?? "",
+                           with: pokemon?.sprites.frontDefaultAsURL)
                 return cell
             }
             

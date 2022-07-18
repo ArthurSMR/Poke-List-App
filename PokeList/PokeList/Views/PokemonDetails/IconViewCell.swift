@@ -13,6 +13,15 @@ final class IconViewCell: UITableViewCell {
     
     private let pokemonIcon: PokemonIcon = PokemonIcon()
     
+    private let pokemonNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .pokemonBlue
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 32)
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
@@ -23,21 +32,26 @@ final class IconViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupImage(with url: URL? = nil) {
+    func setup(pokemonName: String, with url: URL? = nil) {
+        pokemonNameLabel.text = pokemonName
         pokemonIcon.setupImage(with: url)
     }
     
     private func setupView() {
         
         addSubview(pokemonIcon)
+        addSubview(pokemonNameLabel)
         
         pokemonIcon.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             pokemonIcon.centerXAnchor.constraint(equalTo: centerXAnchor),
-            pokemonIcon.centerYAnchor.constraint(equalTo: centerYAnchor),
+            pokemonIcon.topAnchor.constraint(equalTo: topAnchor, constant: 32),
             
-            pokemonIcon.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8)
+            pokemonNameLabel.topAnchor.constraint(equalTo: pokemonIcon.bottomAnchor, constant: 8),
+            pokemonNameLabel.heightAnchor.constraint(equalToConstant: 32),
+            pokemonNameLabel.centerXAnchor.constraint(equalTo: pokemonIcon.centerXAnchor),
+            pokemonNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
         
         contentView.backgroundColor = .white
