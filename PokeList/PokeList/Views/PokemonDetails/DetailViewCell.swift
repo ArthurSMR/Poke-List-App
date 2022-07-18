@@ -65,6 +65,8 @@ final class DetailViewCell: UITableViewCell {
         
         selectionStyle = .none
         
+        contentView.backgroundColor = .white
+        
         detailResultLabel.font = .boldSystemFont(ofSize: 16)
     }
 }

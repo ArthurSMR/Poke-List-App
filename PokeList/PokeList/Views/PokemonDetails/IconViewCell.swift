@@ -40,5 +40,6 @@ final class IconViewCell: UITableViewCell {
             pokemonIcon.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8)
         ])
         
+        contentView.backgroundColor = .white
     }
 }

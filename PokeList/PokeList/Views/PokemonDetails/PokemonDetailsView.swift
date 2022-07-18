@@ -12,7 +12,7 @@ final class PokemonDetailsView: UIView {
     var pokemon: PokemonEntity?
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -44,6 +44,31 @@ extension PokemonDetailsView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         indexPath.row == 0 ? 200 : 40
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        
+        let label = UILabel()
+        label.frame = CGRect(x: 16,
+                             y: 8,
+                             width: headerView.frame.width,
+                             height: headerView.frame.height)
+        
+        let height = String(pokemon?.base_experience ?? 0)
+        
+        label.text = "Base Experience: \(height)"
+        label.font = .boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        
+        headerView.addSubview(label)
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
 }
 
@@ -92,7 +117,7 @@ extension PokemonDetailsView: ViewCodable {
     }
     
     func render() {
-        
+        tableView.backgroundColor = .pokemonYellow
     }
 }
 
